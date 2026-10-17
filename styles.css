@@ -1,0 +1,31 @@
+.modlog-filter-controls {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.modlog-filter-controls select,
+.modlog-filter-controls input {
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 7px 9px;
+    color: var(--color-text-base, #efeff1);
+    background: var(--color-background-input, #18181b);
+    border: 1px solid var(--color-border-input, #464649);
+    border-radius: 5px;
+    font: inherit;
+}
+
+.modlog-filter-controls select {
+    flex: 0 0 auto;
+}
+
+.modlog-filter-controls input {
+    flex: 1 1 120px;
+}
+
+.seventv-mod-logs-card[data-modlog-filter-hidden="true"] {
+    display: none !important; 
+}

@@ -29,3 +29,10 @@
 .seventv-mod-logs-card[data-modlog-filter-hidden="true"] {
     display: none !important; 
 }
+
+.modlog-switch {
+    position: relaitve;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}

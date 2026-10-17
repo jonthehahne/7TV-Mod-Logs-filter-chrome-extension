@@ -2,7 +2,6 @@
     const PANEL = ".seventv-mod-logs-panel";
     const CARD = ".seventv-mod-logs-card";
     const CHIP = ".seventv-mod-logs-chip";
-    const TARGET = ".seventv-mod-logs-target";
     
     const FILTER_CLASS = "modlog-filter-controls";
 
@@ -21,18 +20,10 @@
             <option value="ban">Bans</option>
             <option value="timeout">Timeouts</option>
         </select>
-
-        <input
-            class="modlog-search"
-            type="search"
-            placeholder="Search chatter..."
-            aria-label="Search chatter"
-        />
         `;
 
         list.parentElement.insertBefore(controls, list);
 
-        controls.addEventListener("input", applyFilters);
         controls.addEventListener("change", applyFilters);
 
         applyFilters();
@@ -46,35 +37,21 @@
         if (!controls) return;
 
         const action = controls.querySelector(".modlog-action").value;
-/*         const query = controls
-            .querySelector(".modlog-search")
-            .value.trim()
-            .replace(/^@/, "")
-            .toLowerCase(); */
 
         panel.querySelectorAll(CARD).forEach(card => {
             const chip = card.querySelector(CHIP);
-            /* const target = card.querySelector(TARGET); */
 
             const actionText = chip?.textContent.trim().toLowerCase() ?? "";
-            /* const username = target?.textContent
-                .trim()
-                .replace(/^@/, "")
-                .toLowerCase() ?? ""; */
 
             const matchesAction =
                 action === "all" ||
                 (action === "ban" && actionText.includes("Ban")) ||
                 (action === "timeout" 
-                    /* && actionText.includes("Timeout") */
+                    && actionText.includes("T")
                 );
 
-            /* const matchesSearch = username.includes(query); */
-
             card.dataset.modlogFilterHidden =
-                String(!(matchesAction 
-                    /* && matchesSearch */
-                ));
+                String(!(matchesAction));
         });
     }
 

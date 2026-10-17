@@ -45,9 +45,9 @@
 
             const matchesAction =
                 action === "all" ||
-                (action === "ban" && actionText.includes("Ban")) ||
+                (action === "ban" && actionText.includes("ban")) ||
                 (action === "timeout" 
-                    && actionText.includes("T")
+                    && actionText.includes("timeout")
                 );
 
             card.dataset.modlogFilterHidden =

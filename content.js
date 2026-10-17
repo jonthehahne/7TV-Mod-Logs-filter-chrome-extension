@@ -1,8 +1,8 @@
 (() => {
     const PANEL = ".seventv-mod-logs-panel";
-    const CARD = "-seventv-mod-logs-card";
-    const CHIP = "-seventv-mod-logs-chip";
-    const TARGET = "-seventv-mod-logs-target";
+    const CARD = ".seventv-mod-logs-card";
+    const CHIP = ".seventv-mod-logs-chip";
+    const TARGET = ".seventv-mod-logs-target";
     
     const FILTER_CLASS = "modlog-filter-controls";
 
@@ -46,31 +46,35 @@
         if (!controls) return;
 
         const action = controls.querySelector(".modlog-action").value;
-        const query = controls
+/*         const query = controls
             .querySelector(".modlog-search")
             .value.trim()
             .replace(/^@/, "")
-            .toLowerCase();
+            .toLowerCase(); */
 
         panel.querySelectorAll(CARD).forEach(card => {
             const chip = card.querySelector(CHIP);
-            const target = card.querySelector(TARGET);
+            /* const target = card.querySelector(TARGET); */
 
             const actionText = chip?.textContent.trim().toLowerCase() ?? "";
-            const username = target?.textContent
+            /* const username = target?.textContent
                 .trim()
                 .replace(/^@/, "")
-                .toLowerCase() ?? "";
+                .toLowerCase() ?? ""; */
 
             const matchesAction =
                 action === "all" ||
-                (action === "ban" && actionText.includes("ban")) ||
-                (action === "timeout" && actionText.includes("timeout"));
+                (action === "ban" && actionText.includes("Ban")) ||
+                (action === "timeout" 
+                    /* && actionText.includes("Timeout") */
+                );
 
-            const matchesSearch = username.includes(query);
+            /* const matchesSearch = username.includes(query); */
 
             card.dataset.modlogFilterHidden =
-                String(!(matchesAction && matchesSearch));
+                String(!(matchesAction 
+                    /* && matchesSearch */
+                ));
         });
     }
 

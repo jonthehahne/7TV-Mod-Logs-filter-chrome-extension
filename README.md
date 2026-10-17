@@ -1,5 +1,4 @@
 # 7TV Mod Log Filtering
----
 ## About
 7TV Mod Log Filtering is a chrome extension that serves to improve a feature from the very popular Twitch/Kick extension 7TV. "Mod Logs" is one of many features that 7TV offers to the user and its specific purpose is to provide information regarding chat moderation. This project seeks to enhance the clarity of the feature by enabling the user to filter the logs.
 

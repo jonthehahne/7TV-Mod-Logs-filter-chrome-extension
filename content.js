@@ -63,21 +63,23 @@
                 String(!(matchesFilter));
         });
 
-        const elements = [... panel.querySelectorAll(CARD)];
-        const parentElement = panel.querySelector(".seventv-mod-logs-list");
+        const elements = Array.from(panel.querySelectorAll(CARD));
+
+        console.log(elements);
+        if (sort==="worst") {
+            elements.sort((a,b) => {
+                const anum = parseFloat((a.querySelector(CHIP)?.textContent.trim() ?? '').replace(/[^0-9.\-]/g,''));
+                const bnum = parseFloat((b.querySelector(CHIP)?.textContent.trim() ?? '').replace(/[^0-9.\-]/g,''));
+
+                return anum - bnum
+            });
+        }
+        
+        console.log(elements)
+        elements.forEach(item => panel.appendChild(item));
 
 
-        const collator = new Intl.Collator(undefined, {numeric: IsNumeric, sensitivity: 'base'});
-
-
-        if (sort === "worst") {
-            elements.sort((elementA, elementB) => {
-                const timeoutvalueA = elementA.querySelector(CHIP).textContent.trim().slice(8, elementA.querySelector(CHIP).textContent().trim().length - 3);
-                const timeoutvalueB = elementB.querySelector(CHIP).textContent.trim().slice(8, elementB.querySelector(CHIP).textContent().trim().length - 3);
-                return timeoutvalueA - timeoutvalueB;
-            })
-            .forEach(element => parentElement.appendChild(element));
-        } 
+        
         /* else {
             elements.sort((elementA, elementB) => {
                 const timesinceA = elementA.

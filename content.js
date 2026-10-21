@@ -39,6 +39,15 @@
         applyFilters();
     }
 
+    const time = function (number) {
+        const int = parseFloat(number);
+        if (number.endsWith("s") || number.endsWith("e")) {
+            return int
+        } else {
+            return int * 60
+        }
+    }
+
     function applyFilters() {
         const panel = document.querySelector(PANEL);
         if (!panel) return;
@@ -64,22 +73,28 @@
         });
 
         const elements = Array.from(panel.querySelectorAll(CARD));
+        const list = panel.querySelector(".seventv-mod-logs-list");
 
-        console.log(elements);
         if (sort==="worst") {
             elements.sort((a,b) => {
                 const anum = parseFloat((a.querySelector(CHIP)?.textContent.trim() ?? '').replace(/[^0-9.\-]/g,''));
                 const bnum = parseFloat((b.querySelector(CHIP)?.textContent.trim() ?? '').replace(/[^0-9.\-]/g,''));
 
+                return bnum - anum
+            });
+            elements.forEach(item => list.appendChild(item));
+        }
+
+        if (sort=="recent") {
+            elements.sort((a,b) => {
+                const anum = time((a.querySelector(TIME)?.textContent.trim() ?? '').slice(0,4));
+                const bnum = time((b.querySelector(TIME)?.textContent.trim() ?? '').slice(0,4));
+
                 return anum - bnum
             });
+            elements.forEach(item => list.appendChild(item));
+            
         }
-        
-        console.log(elements)
-        elements.forEach(item => panel.appendChild(item));
-
-
-        
         /* else {
             elements.sort((elementA, elementB) => {
                 const timesinceA = elementA.

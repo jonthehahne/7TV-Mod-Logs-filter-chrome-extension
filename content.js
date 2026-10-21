@@ -3,6 +3,8 @@
     const CARD = ".seventv-mod-logs-card";
     const CHIP = ".seventv-mod-logs-chip";
     const TIME = ".seventv-mod-logs-time";
+    const MESSAGE =".seventv-mod-logs-message";
+    const MESSAGE_LIST =".seventv-mod-logs-message-list";
     
     const FILTER_CLASS = "modlog-filter-controls";
 
@@ -28,7 +30,10 @@
         </select>
 
             <label class="modlog-switch">
-            <input type="checkbox">
+            <input type="checkbox" id="modlog-filter-checkbox-show-one">
+        </label>
+            <label class="modlog-switch">
+            <input type="checkbox" id="modlog-filter-checkbox-hide">
         </label>
         `;
 
@@ -72,6 +77,14 @@
                 String(!(matchesFilter));
         });
 
+        const cb1 = document.getElementById("modlog-filter-checkbox-show-one");
+        const cb0 = document.getElementById("modlog-filter-checkbox-hide");
+        console.log(cb1.checked);
+
+        
+
+
+
         const elements = Array.from(panel.querySelectorAll(CARD));
         const list = panel.querySelector(".seventv-mod-logs-list");
 
@@ -95,6 +108,51 @@
             elements.forEach(item => list.appendChild(item));
             
         }
+
+        if (cb1.checked) {
+            elements.forEach(item => {
+                const messages = item.querySelectorAll(MESSAGE);
+                messages.forEach((message_item, index, array) => {
+                    if (index === array.length - 1) return;
+                    message_item.style.display="none";
+                });
+                console.log("looop");
+            }
+            );
+            console.log("once");
+        } else {
+            elements.forEach(item => {
+                const messages = item.querySelectorAll(MESSAGE);
+                messages.forEach(message_item => {
+                    message_item.style.display="";
+                });
+                console.log("looop");
+            }
+            );
+            console.log("once");
+        }
+        if (cb0.checked) {
+            elements.forEach(item => {
+                const messages = item.querySelectorAll(MESSAGE);
+                messages.forEach(message_item => {
+                    message_item.style.display="none";
+                });
+                console.log("looop");
+            }
+            );
+            console.log("once");
+        } else {
+            elements.forEach(item => {
+                const messages = item.querySelectorAll(MESSAGE);
+                messages.forEach(message_item => {
+                    message_item.style.display="";
+                });
+                console.log("looop");
+            }
+            );
+            console.log("once");
+        }
+
         /* else {
             elements.sort((elementA, elementB) => {
                 const timesinceA = elementA.

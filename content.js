@@ -108,29 +108,20 @@
             elements.forEach(item => list.appendChild(item));
             
         }
+        if (!cb1.checked) console.log("blaaaaaaaaaaaaaaaaaaa");
 
         if (cb1.checked) {
             elements.forEach(item => {
                 const messages = item.querySelectorAll(MESSAGE);
                 messages.forEach((message_item, index, array) => {
-                    if (index === array.length - 1) return;
+                    if (index === array.length - 1) message_item.style.display="";
                     message_item.style.display="none";
                 });
                 console.log("looop");
             }
             );
             console.log("once");
-        } else {
-            elements.forEach(item => {
-                const messages = item.querySelectorAll(MESSAGE);
-                messages.forEach(message_item => {
-                    message_item.style.display="";
-                });
-                console.log("looop");
-            }
-            );
-            console.log("once");
-        }
+        } 
         if (cb0.checked) {
             elements.forEach(item => {
                 const messages = item.querySelectorAll(MESSAGE);
@@ -141,7 +132,7 @@
             }
             );
             console.log("once");
-        } else {
+        } else if (!cb1.checked){
             elements.forEach(item => {
                 const messages = item.querySelectorAll(MESSAGE);
                 messages.forEach(message_item => {

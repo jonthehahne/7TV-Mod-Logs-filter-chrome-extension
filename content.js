@@ -48,8 +48,10 @@
         const int = parseFloat(number);
         if (number.endsWith("s") || number.endsWith("e")) {
             return int
-        } else {
+        } else if (number.endsWith("m") || number.endsWith("")) {
             return int * 60
+        } else {
+            return int * 3600
         }
     }
 
@@ -108,19 +110,16 @@
             elements.forEach(item => list.appendChild(item));
             
         }
-        if (!cb1.checked) console.log("blaaaaaaaaaaaaaaaaaaa");
 
         if (cb1.checked) {
             elements.forEach(item => {
                 const messages = item.querySelectorAll(MESSAGE);
                 messages.forEach((message_item, index, array) => {
-                    if (index === array.length - 1) message_item.style.display="";
                     message_item.style.display="none";
+                    if (index == array.length - 1) message_item.style.display="";
                 });
-                console.log("looop");
             }
             );
-            console.log("once");
         } 
         if (cb0.checked) {
             elements.forEach(item => {
@@ -128,20 +127,20 @@
                 messages.forEach(message_item => {
                     message_item.style.display="none";
                 });
-                console.log("looop");
+
             }
             );
-            console.log("once");
+
         } else if (!cb1.checked){
             elements.forEach(item => {
                 const messages = item.querySelectorAll(MESSAGE);
                 messages.forEach(message_item => {
                     message_item.style.display="";
                 });
-                console.log("looop");
+
             }
             );
-            console.log("once");
+
         }
 
         /* else {
